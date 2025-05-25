@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - For Your Taste | Malaysian Delights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D06224',
+                        secondary: '#AE431E',
+                        accent: '#8A8635',
+                        light: '#EAC891',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1798&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Smooth transitions for mobile menu */
+        .mobile-menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu-content.open {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        /* Language toggle */
+        .language-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .language-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .language-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .language-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .language-slider {
+            background-color: #D06224;
+        }
+        
+        input:checked + .language-slider:before {
+            transform: translateX(30px);
+        }
+        
+        .language-labels {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+        }
+        
+        .language-en {
+            left: 8px;
+        }
+        
+        .language-my {
+            right: 8px;
+        }
+        
+        /* Policy content styling */
+        .policy-section {
+            margin-bottom: 2rem;
+        }
+        
+        .policy-section h2 {
+            border-bottom: 2px solid #D06224;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-section ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-section ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="font-sans bg-light">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="Home page.html" class="flex items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-2 sm:mr-3">
+                        <span class="text-white font-bold text-lg sm:text-xl"><img src="FYT.png"></span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-primary">For Your<span class="text-secondary"> Taste</span></h1>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:block">
+                <ul class="flex space-x-2 sm:space-x-4 md:space-x-6">
+                    <li><a href="Home page.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.home">Home</a></li>
+                    <li><a href="About Us.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="Shop.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.shop">Shop</a></li>
+                    <li><a href="Contact Us.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Search and Icons -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Language Toggle -->
+                <div class="flex items-center mr-2">
+                    <label class="language-toggle">
+                        <input type="checkbox" id="languageToggle">
+                        <span class="language-slider"></span>
+                        <span class="language-labels language-en">EN</span>
+                        <span class="language-labels language-my">MY</span>
+                    </label>
+                </div>
+                
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search..." class="pl-8 pr-3 py-1 sm:pl-10 sm:pr-4 sm:py-2 text-sm sm:text-base rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" data-i18n-placeholder="search.placeholder">
+                    <i class="fas fa-search absolute left-2 top-2 sm:left-3 sm:top-3 text-gray-400"></i>
+                </div>
+                
+                <a href="Log in.html" class="p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-user text-lg sm:text-xl text-primary"></i>
+                </a>
+                
+                <a href="Cart.html" class="p-1 sm:p-2 rounded-full hover:bg-gray-100 relative">
+                    <i class="fas fa-shopping-cart text-lg sm:text-xl text-primary"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-secondary text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center">0</span>
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="lg:hidden p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-bars text-lg sm:text-xl text-primary"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu-content lg:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3">
+                <!-- Language Toggle for Mobile -->
+                <div class="flex justify-center mb-4">
+                    <label class="language-toggle">
+                        <input type="checkbox" id="languageToggleMobile">
+                        <span class="language-slider"></span>
+                        <span class="language-labels language-en">EN</span>
+                        <span class="language-labels language-my">MS</span>
+                    </label>
+                </div>
+                
+                <div class="relative mb-3">
+                    <input type="text" placeholder="Search..." class="w-full pl-8 pr-3 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" data-i18n-placeholder="search.placeholder">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <ul class="space-y-2">
+                    <li><a href="Home.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.home">Home</a></li>
+                    <li><a href="About Us.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="Shop.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.shop">Shop</a></li>
+                    <li><a href="Contact Us.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.contact">Contact Us</a></li>
+                    <li><a href="Log in.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.login">Log In</a></li>
+                    <li><a href="Cart.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6" data-i18n="privacy.heroTitle">Privacy Policy</h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 max-w-2xl md:max-w-3xl mx-auto" data-i18n="privacy.heroSubtitle">Your privacy is important to us. Learn how we collect, use, and protect your personal information.</p>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Content -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.introTitle">Introduction</h2>
+                <p class="text-gray-700 mb-4" data-i18n="privacy.introContent">For Your Taste ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make purchases from us.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.collectTitle">Information We Collect</h2>
+                <p class="text-gray-700 mb-2" data-i18n="privacy.collectContent">We may collect personal information that you voluntarily provide to us when you:</p>
+                <ul class="text-gray-700 mb-4">
+                    <li data-i18n="privacy.collect1">Register an account on our website</li>
+                    <li data-i18n="privacy.collect2">Place an order for products</li>
+                    <li data-i18n="privacy.collect3">Subscribe to our newsletter</li>
+                    <li data-i18n="privacy.collect4">Contact us with inquiries</li>
+                    <li data-i18n="privacy.collect5">Participate in surveys or promotions</li>
+                </ul>
+                <p class="text-gray-700 mb-4" data-i18n="privacy.collectAdditional">The types of personal information we may collect include your name, email address, phone number, shipping address, payment information, and purchase history.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.useTitle">How We Use Your Information</h2>
+                <p class="text-gray-700 mb-2" data-i18n="privacy.useContent">We use the information we collect to:</p>
+                <ul class="text-gray-700 mb-4">
+                    <li data-i18n="privacy.use1">Process and fulfill your orders</li>
+                    <li data-i18n="privacy.use2">Communicate with you about your orders</li>
+                    <li data-i18n="privacy.use3">Provide customer support</li>
+                    <li data-i18n="privacy.use4">Improve our products and services</li>
+                    <li data-i18n="privacy.use5">Send marketing communications (if you've opted in)</li>
+                    <li data-i18n="privacy.use6">Prevent fraudulent transactions</li>
+                    <li data-i18n="privacy.use7">Comply with legal obligations</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.sharingTitle">Sharing of Information</h2>
+                <p class="text-gray-700 mb-4" data-i18n="privacy.sharingContent">We do not sell or rent your personal information to third parties. We may share your information with:</p>
+                <ul class="text-gray-700 mb-4">
+                    <li data-i18n="privacy.sharing1">Service providers who assist with our business operations (e.g., payment processors, shipping carriers)</li>
+                    <li data-i18n="privacy.sharing2">Legal authorities when required by law or to protect our rights</li>
+                    <li data-i18n="privacy.sharing3">Business partners in connection with services they perform for us</li>
+                </ul>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.securityTitle">Data Security</h2>
+                <p class="text-gray-700 mb-4" data-i18n="privacy.securityContent">We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These include encryption, access controls, and secure servers.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.cookiesTitle">Cookies and Tracking Technologies</h2>
+                <p class="text-gray-700 mb-4" data-i18n="privacy.cookiesContent">We use cookies and similar tracking technologies to enhance your experience on our website, analyze trends, and administer the site. You can control cookies through your browser settings.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.rightsTitle">Your Rights</h2>
+                <p class="text-gray-700 mb-2" data-i18n="privacy.rightsContent">Depending on your location, you may have certain rights regarding your personal information, including:</p>
+                <ul class="text-gray-700 mb-4">
+                    <li data-i18n="privacy.rights1">The right to access and receive a copy of your personal data</li>
+                    <li data-i18n="privacy.rights2">The right to correct inaccurate information</li>
+                    <li data-i18n="privacy.rights3">The right to request deletion of your data</li>
+                    <li data-i18n="privacy.rights4">The right to object to or restrict processing</li>
+                    <li data-i18n="privacy.rights5">The right to withdraw consent</li>
+                </ul>
+                <p class="text-gray-700" data-i18n="privacy.rightsContact">To exercise these rights, please contact us using the information provided below.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.changesTitle">Changes to This Policy</h2>
+                <p class="text-gray-700 mb-4" data-i18n="privacy.changesContent">We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. We will notify you of significant changes by posting the new policy on our website with an updated effective date.</p>
+            </div>
+            
+            <div class="policy-section">
+                <h2 class="text-xl sm:text-2xl font-bold text-primary mb-4" data-i18n="privacy.contactTitle">Contact Us</h2>
+                <p class="text-gray-700 mb-4" data-i18n="privacy.contactContent">If you have any questions about this Privacy Policy or our privacy practices, please contact us at:</p>
+                <address class="text-gray-700 not-italic">
+                    <p data-i18n="privacy.companyName">For Your Taste</p>
+                    <p data-i18n="privacy.companyAddress">8 Pekan Sungai Lalang, 08100 Bedong, Kedah</p>
+                    <p data-i18n="privacy.companyEmail">Email: nb020347@gmail.com</p>
+                    <p data-i18n="privacy.companyPhone">Phone: +60 12-345 6789</p>
+                </address>
+            </div>
+            
+            <div class="policy-section">
+                <p class="text-gray-700" data-i18n="privacy.effectiveDate"><strong>Effective Date:</strong> June 1, 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white pt-10 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <!-- Important Links -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.linksTitle">Important Links</h3>
+                    <ul class="space-y-1 sm:space-y-2">
+                        <li><a href="Privacy Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="Shipping Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.shipping">Shipping Policy</a></li>
+                        <li><a href="Return Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.returns">Return Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Shipping Information -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.shippingTitle">Shipping Information</h3>
+                    <p class="text-sm sm:text-base" data-i18n="footer.shippingDesc">Enjoy fast and dependable delivery, ensuring your orders arrive safely and on time. We take pride in providing a seamless shipping experience for every customer.</p>
+                </div>
+                
+                <!-- Company Information -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.companyTitle">Company Information</h3>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.companyName">Company Name:</strong> NBB NaVeen Enterprise</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.businessType">Business Type:</strong> Makanan (Food)</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.address">Business Address:</strong> 8 Pekan Sungai Lalang, 08100 Bedong, Kedah</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.email">Email:</strong> nb020347@gmail.com</p>
+                </div>
+            </div>
+            
+            <!-- Social Media -->
+            <div class="flex justify-center space-x-4 sm:space-x-6 mb-6 sm:mb-8">
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center pt-4 sm:pt-6 border-t border-light">
+                <p class="text-sm sm:text-base" data-i18n="footer.copyright">&copy; 2024 MYR Enterprise Information. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About Us",
+                "nav.shop": "Shop",
+                "nav.contact": "Contact Us",
+                "nav.login": "Log In",
+                "nav.cart": "Cart",
+                "search.placeholder": "Search...",
+                "privacy.heroTitle": "Privacy Policy",
+                "privacy.heroSubtitle": "Your privacy is important to us. Learn how we collect, use, and protect your personal information.",
+                "privacy.introTitle": "Introduction",
+                "privacy.introContent": "For Your Taste (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make purchases from us.",
+                "privacy.collectTitle": "Information We Collect",
+                "privacy.collectContent": "We may collect personal information that you voluntarily provide to us when you:",
+                "privacy.collect1": "Register an account on our website",
+                "privacy.collect2": "Place an order for products",
+                "privacy.collect3": "Subscribe to our newsletter",
+                "privacy.collect4": "Contact us with inquiries",
+                "privacy.collect5": "Participate in surveys or promotions",
+                "privacy.collectAdditional": "The types of personal information we may collect include your name, email address, phone number, shipping address, payment information, and purchase history.",
+                "privacy.useTitle": "How We Use Your Information",
+                "privacy.useContent": "We use the information we collect to:",
+                "privacy.use1": "Process and fulfill your orders",
+                "privacy.use2": "Communicate with you about your orders",
+                "privacy.use3": "Provide customer support",
+                "privacy.use4": "Improve our products and services",
+                "privacy.use5": "Send marketing communications (if you've opted in)",
+                "privacy.use6": "Prevent fraudulent transactions",
+                "privacy.use7": "Comply with legal obligations",
+                "privacy.sharingTitle": "Sharing of Information",
+                "privacy.sharingContent": "We do not sell or rent your personal information to third parties. We may share your information with:",
+                "privacy.sharing1": "Service providers who assist with our business operations (e.g., payment processors, shipping carriers)",
+                "privacy.sharing2": "Legal authorities when required by law or to protect our rights",
+                "privacy.sharing3": "Business partners in connection with services they perform for us",
+                "privacy.securityTitle": "Data Security",
+                "privacy.securityContent": "We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These include encryption, access controls, and secure servers.",
+                "privacy.cookiesTitle": "Cookies and Tracking Technologies",
+                "privacy.cookiesContent": "We use cookies and similar tracking technologies to enhance your experience on our website, analyze trends, and administer the site. You can control cookies through your browser settings.",
+                "privacy.rightsTitle": "Your Rights",
+                "privacy.rightsContent": "Depending on your location, you may have certain rights regarding your personal information, including:",
+                "privacy.rights1": "The right to access and receive a copy of your personal data",
+                "privacy.rights2": "The right to correct inaccurate information",
+                "privacy.rights3": "The right to request deletion of your data",
+                "privacy.rights4": "The right to object to or restrict processing",
+                "privacy.rights5": "The right to withdraw consent",
+                "privacy.rightsContact": "To exercise these rights, please contact us using the information provided below.",
+                "privacy.changesTitle": "Changes to This Policy",
+                "privacy.changesContent": "We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. We will notify you of significant changes by posting the new policy on our website with an updated effective date.",
+                "privacy.contactTitle": "Contact Us",
+                "privacy.contactContent": "If you have any questions about this Privacy Policy or our privacy practices, please contact us at:",
+                "privacy.companyName": "For Your Taste",
+                "privacy.companyAddress": "8 Pekan Sungai Lalang, 08100 Bedong, Kedah",
+                "privacy.companyEmail": "Email: nb020347@gmail.com",
+                "privacy.companyPhone": "Phone: +60 12-345 6789",
+                "privacy.effectiveDate": "Effective Date: June 1, 2024",
+                "footer.linksTitle": "Important Links",
+                "footer.privacy": "Privacy Policy",
+                "footer.shipping": "Shipping Policy",
+                "footer.returns": "Return Policy",
+                "footer.shippingTitle": "Shipping Information",
+                "footer.shippingDesc": "Enjoy fast and dependable delivery, ensuring your orders arrive safely and on time. We take pride in providing a seamless shipping experience for every customer.",
+                "footer.companyTitle": "Company Information",
+                "footer.companyName": "Company Name:",
+                "footer.businessType": "Business Type:",
+                "footer.address": "Business Address:",
+                "footer.email": "Email:",
+                "footer.copyright": "© 2024 MYR Enterprise Information. All Rights Reserved."
+            },
+            my: {
+                "nav.home": "Laman Utama",
+                "nav.about": "Tentang Kami",
+                "nav.shop": "Kedai",
+                "nav.contact": "Hubungi Kami",
+                "nav.login": "Log Masuk",
+                "nav.cart": "Troli",
+                "search.placeholder": "Cari...",
+                "privacy.heroTitle": "Dasar Privasi",
+                "privacy.heroSubtitle": "Privasi anda penting bagi kami. Ketahui bagaimana kami mengumpul, menggunakan dan melindungi maklumat peribadi anda.",
+                "privacy.introTitle": "Pengenalan",
+                "privacy.introContent": "For Your Taste (\"kami\") komited untuk melindungi privasi anda. Dasar Privasi ini menerangkan bagaimana kami mengumpul, menggunakan, mendedahkan dan melindungi maklumat anda apabila anda melawat laman web kami atau membuat pembelian daripada kami.",
+                "privacy.collectTitle": "Maklumat Yang Kami Kumpul",
+                "privacy.collectContent": "Kami mungkin mengumpul maklumat peribadi yang anda berikan secara sukarela kepada kami apabila anda:",
+                "privacy.collect1": "Mendaftar akaun di laman web kami",
+                "privacy.collect2": "Membuat pesanan produk",
+                "privacy.collect3": "Melanggan surat berita kami",
+                "privacy.collect4": "Menghubungi kami dengan pertanyaan",
+                "privacy.collect5": "Menyertai tinjauan atau promosi",
+                "privacy.collectAdditional": "Jenis maklumat peribadi yang kami kumpul termasuk nama anda, alamat e-mel, nombor telefon, alamat penghantaran, maklumat pembayaran dan sejarah pembelian.",
+                "privacy.useTitle": "Bagaimana Kami Menggunakan Maklumat Anda",
+                "privacy.useContent": "Kami menggunakan maklumat yang kami kumpul untuk:",
+                "privacy.use1": "Memproses dan memenuhi pesanan anda",
+                "privacy.use2": "Berkomunikasi dengan anda mengenai pesanan anda",
+                "privacy.use3": "Memberikan sokongan pelanggan",
+                "privacy.use4": "Memperbaiki produk dan perkhidmatan kami",
+                "privacy.use5": "Menghantar komunikasi pemasaran (jika anda telah memilih untuk menerima)",
+                "privacy.use6": "Mencegah transaksi penipuan",
+                "privacy.use7": "Mematuhi kewajipan undang-undang",
+                "privacy.sharingTitle": "Perkongsian Maklumat",
+                "privacy.sharingContent": "Kami tidak menjual atau menyewakan maklumat peribadi anda kepada pihak ketiga. Kami mungkin berkongsi maklumat anda dengan:",
+                "privacy.sharing1": "Pembekal perkhidmatan yang membantu operasi perniagaan kami (cth, pemproses pembayaran, syarikat penghantaran)",
+                "privacy.sharing2": "Pihak berkuasa undang-undang apabila diperlukan oleh undang-undang atau untuk melindungi hak kami",
+                "privacy.sharing3": "Rakan kongsi perniagaan berkaitan perkhidmatan yang mereka sediakan untuk kami",
+                "privacy.securityTitle": "Keselamatan Data",
+                "privacy.securityContent": "Kami melaksanakan langkah keselamatan yang sesuai untuk melindungi maklumat peribadi anda daripada akses, pengubahsuaian, pendedahan atau pemusnahan yang tidak dibenarkan. Ini termasuk penyulitan, kawalan akses dan pelayan yang selamat.",
+                "privacy.cookiesTitle": "Kuki dan Teknologi Penjejakan",
+                "privacy.cookiesContent": "Kami menggunakan kuki dan teknologi penjejakan yang serupa untuk meningkatkan pengalaman anda di laman web kami, menganalisis trend dan mentadbir laman web. Anda boleh mengawal kuki melalui tetapan penyemak imbas anda.",
+                "privacy.rightsTitle": "Hak Anda",
+                "privacy.rightsContent": "Bergantung pada lokasi anda, anda mungkin mempunyai hak tertentu berkenaan maklumat peribadi anda, termasuk:",
+                "privacy.rights1": "Hak untuk mengakses dan menerima salinan data peribadi anda",
+                "privacy.rights2": "Hak untuk membetulkan maklumat yang tidak tepat",
+                "privacy.rights3": "Hak untuk meminta pemadaman data anda",
+                "privacy.rights4": "Hak untuk membantah atau menyekat pemprosesan",
+                "privacy.rights5": "Hak untuk menarik balik persetujuan",
+                "privacy.rightsContact": "Untuk menggunakan hak ini, sila hubungi kami menggunakan maklumat yang disediakan di bawah.",
+                "privacy.changesTitle": "Perubahan Pada Dasar Ini",
+                "privacy.changesContent": "Kami mungkin mengemas kini Dasar Privasi ini secara berkala untuk mencerminkan perubahan dalam amalan kami atau keperluan undang-undang. Kami akan memaklumkan anda tentang perubahan penting dengan menyiarkan dasar baru di laman web kami dengan tarikh berkuat kuasa yang dikemas kini.",
+                "privacy.contactTitle": "Hubungi Kami",
+                "privacy.contactContent": "Jika anda mempunyai sebarang pertanyaan mengenai Dasar Privasi ini atau amalan privasi kami, sila hubungi kami di:",
+                "privacy.companyName": "For Your Taste",
+                "privacy.companyAddress": "8 Pekan Sungai Lalang, 08100 Bedong, Kedah",
+                "privacy.companyEmail": "E-mel: nb020347@gmail.com",
+                "privacy.companyPhone": "Telefon: +60 12-345 6789",
+                "privacy.effectiveDate": "Tarikh Berkuat Kuasa: 1 Jun 2024",
+                "footer.linksTitle": "Pautan Penting",
+                "footer.privacy": "Dasar Privasi",
+                "footer.shipping": "Dasar Penghantaran",
+                "footer.returns": "Dasar Pulangan",
+                "footer.shippingTitle": "Maklumat Penghantaran",
+                "footer.shippingDesc": "Nikmati penghantaran pantas dan boleh dipercayai, memastikan pesanan anda tiba dengan selamat dan tepat pada masanya. Kami berbangga menyediakan pengalaman penghantaran yang lancar untuk setiap pelanggan.",
+                "footer.companyTitle": "Maklumat Syarikat",
+                "footer.companyName": "Nama Syarikat:",
+                "footer.businessType": "Jenis Perniagaan:",
+                "footer.address": "Alamat Perniagaan:",
+                "footer.email": "E-mel:",
+                "footer.copyright": "© 2024 Maklumat Perusahaan MYR. Hak Cipta Terpelihara."
+            }
+        };
+
+        // Set default language
+        let currentLanguage = localStorage.getItem('language') || 'en';
+        
+        // Update language toggle based on stored preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageToggle = document.getElementById('languageToggle');
+            const languageToggleMobile = document.getElementById('languageToggleMobile');
+            
+            if (currentLanguage === 'my') {
+                if (languageToggle) languageToggle.checked = true;
+                if (languageToggleMobile) languageToggleMobile.checked = true;
+            }
+            
+            updateLanguage();
+            
+            // Add event listeners for language toggles
+            if (languageToggle) {
+                languageToggle.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'my' : 'en';
+                    localStorage.setItem('language', currentLanguage);
+                    updateLanguage();
+                });
+            }
+            
+            if (languageToggleMobile) {
+                languageToggleMobile.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'my' : 'en';
+                    localStorage.setItem('language', currentLanguage);
+                    updateLanguage();
+                });
+            }
+        });
+
+        // Update all text elements with translations
+        function updateLanguage() {
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+            
+            // Update all placeholder texts
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[currentLanguage][key]) {
+                    element.setAttribute('placeholder', translations[currentLanguage][key]);
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+        
+        // Close menu when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        // Cart functionality
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        updateCartCount();
+
+        function addToCart(name, price) {
+            // Check if item already exists in cart
+            const existingItem = cartItems.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show notification in current language
+            const message = currentLanguage === 'en' 
+                ? `${name} has been added to your cart!` 
+                : `${name} telah ditambah ke troli anda!`;
+            alert(message);
+        }
+
+        function updateCartCount() {
+            const count = cartItems.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Policy - For Your Taste | Malaysian Delights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D06224',
+                        secondary: '#AE431E',
+                        accent: '#8A8635',
+                        light: '#EAC891',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1798&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Smooth transitions for mobile menu */
+        .mobile-menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu-content.open {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        /* Language toggle */
+        .language-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .language-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .language-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .language-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .language-slider {
+            background-color: #D06224;
+        }
+        
+        input:checked + .language-slider:before {
+            transform: translateX(30px);
+        }
+        
+        .language-labels {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+        }
+        
+        .language-en {
+            left: 8px;
+        }
+        
+        .language-my {
+            right: 8px;
+        }
+        
+        /* Policy content styling */
+        .policy-section {
+            background-color: rgba(234, 200, 145, 0.1);
+            border-left: 4px solid #D06224;
+        }
+    </style>
+</head>
+<body class="font-sans bg-light">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="Home page.html" class="flex items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-2 sm:mr-3">
+                        <span class="text-white font-bold text-lg sm:text-xl"><img src="FYT.png"></span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-primary">For Your<span class="text-secondary"> Taste</span></h1>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:block">
+                <ul class="flex space-x-2 sm:space-x-4 md:space-x-6">
+                    <li><a href="Home page.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.home">Home</a></li>
+                    <li><a href="About Us.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="Shop.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.shop">Shop</a></li>
+                    <li><a href="Contact Us.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Search and Icons -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Language Toggle -->
+                <div class="flex items-center mr-2">
+                    <label class="language-toggle">
+                        <input type="checkbox" id="languageToggle">
+                        <span class="language-slider"></span>
+                        <span class="language-labels language-en">EN</span>
+                        <span class="language-labels language-my">MY</span>
+                    </label>
+                </div>
+                
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search..." class="pl-8 pr-3 py-1 sm:pl-10 sm:pr-4 sm:py-2 text-sm sm:text-base rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" data-i18n-placeholder="search.placeholder">
+                    <i class="fas fa-search absolute left-2 top-2 sm:left-3 sm:top-3 text-gray-400"></i>
+                </div>
+                
+                <a href="Log in.html" class="p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-user text-lg sm:text-xl text-primary"></i>
+                </a>
+                
+                <a href="Cart.html" class="p-1 sm:p-2 rounded-full hover:bg-gray-100 relative">
+                    <i class="fas fa-shopping-cart text-lg sm:text-xl text-primary"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-secondary text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center">0</span>
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="lg:hidden p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-bars text-lg sm:text-xl text-primary"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu-content lg:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3">
+                <!-- Language Toggle for Mobile -->
+                <div class="flex justify-center mb-4">
+                    <label class="language-toggle">
+                        <input type="checkbox" id="languageToggleMobile">
+                        <span class="language-slider"></span>
+                        <span class="language-labels language-en">EN</span>
+                        <span class="language-labels language-my">MS</span>
+                    </label>
+                </div>
+                
+                <div class="relative mb-3">
+                    <input type="text" placeholder="Search..." class="w-full pl-8 pr-3 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" data-i18n-placeholder="search.placeholder">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <ul class="space-y-2">
+                    <li><a href="Home page.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.home">Home</a></li>
+                    <li><a href="About Us.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="Shop.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.shop">Shop</a></li>
+                    <li><a href="Contact Us.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.contact">Contact Us</a></li>
+                    <li><a href="Log in.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.login">Log In</a></li>
+                    <li><a href="Cart.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6" data-i18n="return.heroTitle">Return Policy</h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 max-w-2xl md:max-w-3xl mx-auto" data-i18n="return.heroSubtitle">Our commitment to your satisfaction with every order</p>
+        </div>
+    </section>
+
+    <!-- Policy Content -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Introduction -->
+                <div class="mb-10">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4" data-i18n="return.introTitle">Our Return Policy</h2>
+                    <p class="text-gray-700 mb-4" data-i18n="return.introText1">At For Your Taste, we take pride in delivering authentic Malaysian cuisine made with the finest ingredients. We want you to be completely satisfied with your purchase.</p>
+                    <p class="text-gray-700" data-i18n="return.introText2">Please review our return policy below to understand your options if you're not completely satisfied with your order.</p>
+                </div>
+                
+                <!-- Policy Sections -->
+                <div class="space-y-8">
+                    <!-- Food Items Section -->
+                    <div class="policy-section p-6 rounded-lg">
+                        <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-3" data-i18n="return.foodTitle">Food Items</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li data-i18n="return.food1">Due to the perishable nature of our products, we generally do not accept returns of food items unless they arrive damaged, spoiled, or incorrect.</li>
+                            <li data-i18n="return.food2">If you receive a damaged, spoiled, or incorrect item, please contact us within 24 hours of delivery with photos of the product and packaging.</li>
+                            <li data-i18n="return.food3">We may offer a replacement, credit, or refund at our discretion after reviewing your case.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Non-Food Items Section -->
+                    <div class="policy-section p-6 rounded-lg">
+                        <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-3" data-i18n="return.nonFoodTitle">Non-Food Items</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li data-i18n="return.nonFood1">Non-perishable items (cookware, utensils, etc.) may be returned within 14 days of delivery if unused and in original packaging.</li>
+                            <li data-i18n="return.nonFood2">You will be responsible for return shipping costs unless the return is due to our error.</li>
+                            <li data-i18n="return.nonFood3">Refunds will be issued to the original payment method once we receive and inspect the returned item.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Refund Process -->
+                    <div class="policy-section p-6 rounded-lg">
+                        <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-3" data-i18n="return.refundTitle">Refund Process</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li data-i18n="return.refund1">Approved refunds will be processed within 5-7 business days.</li>
+                            <li data-i18n="return.refund2">Refunds will be issued to the original payment method.</li>
+                            <li data-i18n="return.refund3">Shipping fees are non-refundable unless the return is due to our error.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- How to Initiate a Return -->
+                    <div class="policy-section p-6 rounded-lg">
+                        <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-3" data-i18n="return.howToTitle">How to Initiate a Return</h3>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                            <li data-i18n="return.howTo1">Contact our customer service team at returns@foryourtaste.com within the specified time frame.</li>
+                            <li data-i18n="return.howTo2">Provide your order number and details about the product you would like to return.</li>
+                            <li data-i18n="return.howTo3">Include photos of the product and packaging if applicable.</li>
+                            <li data-i18n="return.howTo4">Wait for approval and return instructions from our team.</li>
+                            <li data-i18n="return.howTo5">Ship the item back to us if required (for non-food items only).</li>
+                        </ol>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="bg-light p-6 rounded-lg">
+                        <h3 class="text-xl sm:text-2xl font-bold text-primary mb-3" data-i18n="return.contactTitle">Need Help?</h3>
+                        <p class="text-gray-700 mb-4" data-i18n="return.contactText">If you have any questions about our return policy, please don't hesitate to contact us.</p>
+                        <a href="Contact Us.html" class="inline-block bg-primary hover:bg-secondary text-white font-bold py-2 px-6 rounded-full transition" data-i18n="return.contactButton">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Policies -->
+    <section class="py-12 md:py-16 bg-accent bg-opacity-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-primary mb-8 sm:mb-12" data-i18n="return.relatedTitle">Related Policies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+                <a href="Privacy Policy.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition">
+                    <div class="bg-primary text-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2" data-i18n="return.privacyTitle">Privacy Policy</h3>
+                    <p class="text-gray-700 text-sm sm:text-base" data-i18n="return.privacyDesc">Learn how we protect your personal information.</p>
+                </a>
+                
+                <a href="Shipping Policy.html" class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition">
+                    <div class="bg-primary text-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-truck text-xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2" data-i18n="return.shippingTitle">Shipping Policy</h3>
+                    <p class="text-gray-700 text-sm sm:text-base" data-i18n="return.shippingDesc">Information about our delivery process and timelines.</p>
+                </a>
+                
+                <a href="Return Policy.html" class="bg-secondary text-white p-6 rounded-lg shadow-md text-center hover:shadow-xl transition">
+                    <div class="bg-white text-primary p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-exchange-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2" data-i18n="return.returnTitle">Return Policy</h3>
+                    <p class="text-light text-sm sm:text-base" data-i18n="return.returnDesc">Our guidelines for returns and refunds.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white pt-10 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <!-- Important Links -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.linksTitle">Important Links</h3>
+                    <ul class="space-y-1 sm:space-y-2">
+                        <li><a href="Privacy Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="Shipping Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.shipping">Shipping Policy</a></li>
+                        <li><a href="Return Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.returns">Return Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Shipping Information -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.shippingTitle">Shipping Information</h3>
+                    <p class="text-sm sm:text-base" data-i18n="footer.shippingDesc">Enjoy fast and dependable delivery, ensuring your orders arrive safely and on time. We take pride in providing a seamless shipping experience for every customer.</p>
+                </div>
+                
+                <!-- Company Information -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.companyTitle">Company Information</h3>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.companyName">Company Name:</strong> NBB NaVeen Enterprise</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.businessType">Business Type:</strong> Makanan (Food)</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.address">Business Address:</strong> 8 Pekan Sungai Lalang, 08100 Bedong, Kedah</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.email">Email:</strong> nb020347@gmail.com</p>
+                </div>
+            </div>
+            
+            <!-- Social Media -->
+            <div class="flex justify-center space-x-4 sm:space-x-6 mb-6 sm:mb-8">
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center pt-4 sm:pt-6 border-t border-light">
+                <p class="text-sm sm:text-base" data-i18n="footer.copyright">&copy; 2024 MYR Enterprise Information. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About Us",
+                "nav.shop": "Shop",
+                "nav.contact": "Contact Us",
+                "nav.login": "Log In",
+                "nav.cart": "Cart",
+                "search.placeholder": "Search...",
+                "return.heroTitle": "Return Policy",
+                "return.heroSubtitle": "Our commitment to your satisfaction with every order",
+                "return.introTitle": "Our Return Policy",
+                "return.introText1": "At For Your Taste, we take pride in delivering authentic Malaysian cuisine made with the finest ingredients. We want you to be completely satisfied with your purchase.",
+                "return.introText2": "Please review our return policy below to understand your options if you're not completely satisfied with your order.",
+                "return.foodTitle": "Food Items",
+                "return.food1": "Due to the perishable nature of our products, we generally do not accept returns of food items unless they arrive damaged, spoiled, or incorrect.",
+                "return.food2": "If you receive a damaged, spoiled, or incorrect item, please contact us within 24 hours of delivery with photos of the product and packaging.",
+                "return.food3": "We may offer a replacement, credit, or refund at our discretion after reviewing your case.",
+                "return.nonFoodTitle": "Non-Food Items",
+                "return.nonFood1": "Non-perishable items (cookware, utensils, etc.) may be returned within 14 days of delivery if unused and in original packaging.",
+                "return.nonFood2": "You will be responsible for return shipping costs unless the return is due to our error.",
+                "return.nonFood3": "Refunds will be issued to the original payment method once we receive and inspect the returned item.",
+                "return.refundTitle": "Refund Process",
+                "return.refund1": "Approved refunds will be processed within 5-7 business days.",
+                "return.refund2": "Refunds will be issued to the original payment method.",
+                "return.refund3": "Shipping fees are non-refundable unless the return is due to our error.",
+                "return.howToTitle": "How to Initiate a Return",
+                "return.howTo1": "Contact our customer service team at returns@foryourtaste.com within the specified time frame.",
+                "return.howTo2": "Provide your order number and details about the product you would like to return.",
+                "return.howTo3": "Include photos of the product and packaging if applicable.",
+                "return.howTo4": "Wait for approval and return instructions from our team.",
+                "return.howTo5": "Ship the item back to us if required (for non-food items only).",
+                "return.contactTitle": "Need Help?",
+                "return.contactText": "If you have any questions about our return policy, please don't hesitate to contact us.",
+                "return.contactButton": "Contact Us",
+                "return.relatedTitle": "Related Policies",
+                "return.privacyTitle": "Privacy Policy",
+                "return.privacyDesc": "Learn how we protect your personal information.",
+                "return.shippingTitle": "Shipping Policy",
+                "return.shippingDesc": "Information about our delivery process and timelines.",
+                "return.returnTitle": "Return Policy",
+                "return.returnDesc": "Our guidelines for returns and refunds.",
+                "footer.linksTitle": "Important Links",
+                "footer.privacy": "Privacy Policy",
+                "footer.shipping": "Shipping Policy",
+                "footer.returns": "Return Policy",
+                "footer.shippingTitle": "Shipping Information",
+                "footer.shippingDesc": "Enjoy fast and dependable delivery, ensuring your orders arrive safely and on time. We take pride in providing a seamless shipping experience for every customer.",
+                "footer.companyTitle": "Company Information",
+                "footer.companyName": "Company Name:",
+                "footer.businessType": "Business Type:",
+                "footer.address": "Business Address:",
+                "footer.email": "Email:",
+                "footer.copyright": "© 2024 MYR Enterprise Information. All Rights Reserved."
+            },
+            my: {
+                "nav.home": "Laman Utama",
+                "nav.about": "Tentang Kami",
+                "nav.shop": "Kedai",
+                "nav.contact": "Hubungi Kami",
+                "nav.login": "Log Masuk",
+                "nav.cart": "Troli",
+                "search.placeholder": "Cari...",
+                "return.heroTitle": "Polisi Pulangan",
+                "return.heroSubtitle": "Komitmen kami untuk kepuasan anda dengan setiap pesanan",
+                "return.introTitle": "Polisi Pulangan Kami",
+                "return.introText1": "Di For Your Taste, kami berbangga menyampaikan masakan Malaysia asli yang dibuat dengan bahan-bahan terbaik. Kami mahu anda berpuas hati sepenuhnya dengan pembelian anda.",
+                "return.introText2": "Sila semak polisi pulangan kami di bawah untuk memahami pilihan anda jika anda tidak berpuas hati sepenuhnya dengan pesanan anda.",
+                "return.foodTitle": "Barangan Makanan",
+                "return.food1": "Disebabkan sifat produk kami yang mudah rosak, kami secara amnya tidak menerima pulangan barangan makanan melainkan jika ia sampai rosak, basi atau salah.",
+                "return.food2": "Jika anda menerima item yang rosak, basi atau salah, sila hubungi kami dalam masa 24 jam selepas penghantaran dengan gambar produk dan pembungkusan.",
+                "return.food3": "Kami mungkin menawarkan penggantian, kredit atau bayaran balik mengikut budi bicara kami setelah mengkaji kes anda.",
+                "return.nonFoodTitle": "Barangan Bukan Makanan",
+                "return.nonFood1": "Barangan tidak mudah rosak (perkakas dapur, alat makan, dll.) boleh dipulangkan dalam masa 14 hari selepas penghantaran jika tidak digunakan dan dalam pembungkusan asal.",
+                "return.nonFood2": "Anda akan bertanggungjawab untuk kos penghantaran pulangan melainkan jika pulangan itu disebabkan oleh kesilapan kami.",
+                "return.nonFood3": "Bayaran balik akan dikeluarkan kepada kaedah pembayaran asal sebaik sahaja kami menerima dan memeriksa item yang dipulangkan.",
+                "return.refundTitle": "Proses Bayaran Balik",
+                "return.refund1": "Bayaran balik yang diluluskan akan diproses dalam masa 5-7 hari bekerja.",
+                "return.refund2": "Bayaran balik akan dikeluarkan kepada kaedah pembayaran asal.",
+                "return.refund3": "Yuran penghantaran tidak boleh dikembalikan melainkan jika pulangan itu disebabkan oleh kesilapan kami.",
+                "return.howToTitle": "Cara Memulangkan Barang",
+                "return.howTo1": "Hubungi pasukan perkhidmatan pelanggan kami di returns@foryourtaste.com dalam tempoh masa yang ditetapkan.",
+                "return.howTo2": "Berikan nombor pesanan anda dan butiran tentang produk yang ingin anda pulangkan.",
+                "return.howTo3": "Sertakan gambar produk dan pembungkusan jika berkenaan.",
+                "return.howTo4": "Tunggu kelulusan dan arahan pulangan daripada pasukan kami.",
+                "return.howTo5": "Hantar item kembali kepada kami jika diperlukan (untuk barangan bukan makanan sahaja).",
+                "return.contactTitle": "Perlukan Bantuan?",
+                "return.contactText": "Jika anda mempunyai sebarang pertanyaan mengenai polisi pulangan kami, jangan teragak-agak untuk menghubungi kami.",
+                "return.contactButton": "Hubungi Kami",
+                "return.relatedTitle": "Polisi Berkaitan",
+                "return.privacyTitle": "Polisi Privasi",
+                "return.privacyDesc": "Ketahui bagaimana kami melindungi maklumat peribadi anda.",
+                "return.shippingTitle": "Polisi Penghantaran",
+                "return.shippingDesc": "Maklumat tentang proses penghantaran dan garis masa kami.",
+                "return.returnTitle": "Polisi Pulangan",
+                "return.returnDesc": "Garis panduan kami untuk pulangan dan bayaran balik.",
+                "footer.linksTitle": "Pautan Penting",
+                "footer.privacy": "Dasar Privasi",
+                "footer.shipping": "Dasar Penghantaran",
+                "footer.returns": "Dasar Pulangan",
+                "footer.shippingTitle": "Maklumat Penghantaran",
+                "footer.shippingDesc": "Nikmati penghantaran pantas dan boleh dipercayai, memastikan pesanan anda tiba dengan selamat dan tepat pada masanya. Kami berbangga menyediakan pengalaman penghantaran yang lancar untuk setiap pelanggan.",
+                "footer.companyTitle": "Maklumat Syarikat",
+                "footer.companyName": "Nama Syarikat:",
+                "footer.businessType": "Jenis Perniagaan:",
+                "footer.address": "Alamat Perniagaan:",
+                "footer.email": "Emel:",
+                "footer.copyright": "© 2024 Maklumat Perusahaan MYR. Hak Cipta Terpelihara."
+            }
+        };
+
+        // Set default language
+        let currentLanguage = localStorage.getItem('language') || 'en';
+        
+        // Update language toggle based on stored preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageToggle = document.getElementById('languageToggle');
+            const languageToggleMobile = document.getElementById('languageToggleMobile');
+            
+            if (currentLanguage === 'my') {
+                if (languageToggle) languageToggle.checked = true;
+                if (languageToggleMobile) languageToggleMobile.checked = true;
+            }
+            
+            updateLanguage();
+            
+            // Add event listeners for language toggles
+            if (languageToggle) {
+                languageToggle.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'my' : 'en';
+                    localStorage.setItem('language', currentLanguage);
+                    updateLanguage();
+                });
+            }
+            
+            if (languageToggleMobile) {
+                languageToggleMobile.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'my' : 'en';
+                    localStorage.setItem('language', currentLanguage);
+                    updateLanguage();
+                });
+            }
+        });
+
+        // Update all text elements with translations
+        function updateLanguage() {
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+            
+            // Update all placeholder texts
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[currentLanguage][key]) {
+                    element.setAttribute('placeholder', translations[currentLanguage][key]);
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+        
+        // Close menu when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        // Cart functionality
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        updateCartCount();
+
+        function addToCart(name, price) {
+            // Check if item already exists in cart
+            const existingItem = cartItems.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show notification in current language
+            const message = currentLanguage === 'en' 
+                ? `${name} has been added to your cart!` 
+                : `${name} telah ditambah ke troli anda!`;
+            alert(message);
+        }
+
+        function updateCartCount() {
+            const count = cartItems.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+    </script>
+</body>
+</html>

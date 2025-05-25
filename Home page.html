@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaysian Delights from MYR Enterprise Information - Authentic Malaysian Cuisine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D06224',
+                        secondary: '#AE431E',
+                        accent: '#8A8635',
+                        light: '#EAC891',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1798&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .food-card {
+            transition: all 0.3s ease;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Smooth transitions for mobile menu */
+        .mobile-menu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu-content.open {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        /* Language toggle */
+        .language-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .language-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .language-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .language-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .language-slider {
+            background-color: #D06224;
+        }
+        
+        input:checked + .language-slider:before {
+            transform: translateX(30px);
+        }
+        
+        .language-labels {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+        }
+        
+        .language-en {
+            left: 8px;
+        }
+        
+        .language-my {
+            right: 8px;
+        }
+        
+        /* Responsive typography */
+        @media (max-width: 640px) {
+            .text-responsive {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-light">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="Home page.html" class="flex items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mr-2 sm:mr-3">
+                        <span class="text-white font-bold text-lg sm:text-xl"><img src="FYT.png"></span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold text-primary">For Your<span class="text-secondary"> Taste</span></h1>
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:block">
+                <ul class="flex space-x-2 sm:space-x-4 md:space-x-6">
+                    <li><a href="Home page.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.home">Home</a></li>
+                    <li><a href="About Us.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="Shop.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.shop">Shop</a></li>
+                    <li><a href="Contact Us.html" class="px-3 py-1 sm:px-4 sm:py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Search and Icons -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Language Toggle -->
+                <div class="flex items-center mr-2">
+                    <label class="language-toggle">
+                        <input type="checkbox" id="languageToggle">
+                        <span class="language-slider"></span>
+                        <span class="language-labels language-en">EN</span>
+                        <span class="language-labels language-my">MY</span>
+                    </label>
+                </div>
+                
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search..." class="pl-8 pr-3 py-1 sm:pl-10 sm:pr-4 sm:py-2 text-sm sm:text-base rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" data-i18n-placeholder="search.placeholder">
+                    <i class="fas fa-search absolute left-2 top-2 sm:left-3 sm:top-3 text-gray-400"></i>
+                </div>
+                
+                <a href="Log in.html" class="p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-user text-lg sm:text-xl text-primary"></i>
+                </a>
+                
+                <a href="Cart.html" class="p-1 sm:p-2 rounded-full hover:bg-gray-100 relative">
+                    <i class="fas fa-shopping-cart text-lg sm:text-xl text-primary"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-secondary text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center">0</span>
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="lg:hidden p-1 sm:p-2 rounded-full hover:bg-gray-100">
+                    <i class="fas fa-bars text-lg sm:text-xl text-primary"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu-content lg:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3">
+                <!-- Language Toggle for Mobile -->
+                <div class="flex justify-center mb-4">
+                    <label class="language-toggle">
+                        <input type="checkbox" id="languageToggleMobile">
+                        <span class="language-slider"></span>
+                        <span class="language-labels language-en">EN</span>
+                        <span class="language-labels language-my">MS</span>
+                    </label>
+                </div>
+                
+                <div class="relative mb-3">
+                    <input type="text" placeholder="Search..." class="w-full pl-8 pr-3 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" data-i18n-placeholder="search.placeholder">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <ul class="space-y-2">
+                    <li><a href="Home.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.home">Home</a></li>
+                    <li><a href="About Us.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.about">About Us</a></li>
+                    <li><a href="Shop.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.shop">Shop</a></li>
+                    <li><a href="Contact Us.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.contact">Contact Us</a></li>
+                    <li><a href="Log in.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.login">Log In</a></li>
+                    <li><a href="Cart.html" class="block px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition" data-i18n="nav.cart">Cart</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-responsive" data-i18n="hero.title">Authentic Malaysian Cuisine</h1>
+            <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 max-w-2xl md:max-w-3xl mx-auto" data-i18n="hero.subtitle">Experience the rich flavors and vibrant spices of Malaysia's diverse culinary heritage, delivered straight to your doorstep.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                <a href="Shop.html" class="bg-primary hover:bg-secondary text-white font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full transition transform hover:scale-105 text-sm sm:text-base" data-i18n="hero.shopButton">Shop Now</a>
+                <a href="About Us.html" class="bg-white hover:bg-gray-100 text-primary font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full transition transform hover:scale-105 text-sm sm:text-base" data-i18n="hero.learnButton">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8 xl:pr-10">
+                    <img src="Culinary.png" alt="Malaysian Food" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6" data-i18n="about.title">Our Story & Ingredients</h2>
+                    <p class="text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base" data-i18n="about.para1">At For Your Taste, we bring you the authentic taste of Malaysia using traditional recipes passed down through generations. Our dishes are prepared with the freshest ingredients and authentic Malaysian spices to ensure an unforgettable culinary experience.</p>
+                    <p class="text-gray-700 mb-4 sm:mb-6 text-sm sm:text-base" data-i18n="about.para2">We source our ingredients directly from Malaysia, including premium coconut milk, fresh lemongrass, galangal, and the finest quality spices. Each dish is carefully crafted to maintain the perfect balance of flavors that Malaysian cuisine is famous for.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-1 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <i class="fas fa-check text-xs sm:text-sm"></i>
+                            </div>
+                            <span class="font-medium text-sm sm:text-base" data-i18n="about.feature1">100% Authentic</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-1 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <i class="fas fa-check text-xs sm:text-sm"></i>
+                            </div>
+                            <span class="font-medium text-sm sm:text-base" data-i18n="about.feature2">Premium Ingredients</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-1 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <i class="fas fa-check text-xs sm:text-sm"></i>
+                            </div>
+                            <span class="font-medium text-sm sm:text-base" data-i18n="about.feature3">Halal Certified</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white p-1 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <i class="fas fa-check text-xs sm:text-sm"></i>
+                            </div>
+                            <span class="font-medium text-sm sm:text-base" data-i18n="about.feature4">No Preservatives</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-12 md:py-16 bg-accent bg-opacity-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-primary mb-8 sm:mb-12" data-i18n="why.title">Why Choose Malaysian Delights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md text-center hover:shadow-xl transition">
+                    <div class="bg-primary text-white p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-star text-lg sm:text-xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3" data-i18n="why.reason1.title">Authentic Taste</h3>
+                    <p class="text-gray-700 text-sm sm:text-base" data-i18n="why.reason1.desc">Our recipes come straight from Malaysian kitchens, ensuring you get the real taste of Malaysia no matter where you are.</p>
+                </div>
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md text-center hover:shadow-xl transition">
+                    <div class="bg-primary text-white p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-leaf text-lg sm:text-xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3" data-i18n="why.reason2.title">Premium Quality</h3>
+                    <p class="text-gray-700 text-sm sm:text-base" data-i18n="why.reason2.desc">We use only the finest ingredients, many imported directly from Malaysia, to guarantee the highest quality in every bite.</p>
+                </div>
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md text-center hover:shadow-xl transition">
+                    <div class="bg-primary text-white p-3 sm:p-4 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <i class="fas fa-truck text-lg sm:text-xl"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3" data-i18n="why.reason3.title">Fast Delivery</h3>
+                    <p class="text-gray-700 text-sm sm:text-base" data-i18n="why.reason3.desc">Enjoy fast and reliable delivery with our temperature-controlled packaging that keeps your food fresh until it arrives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-primary mb-8 sm:mb-12" data-i18n="products.title">Best Sellers This Week</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Product 1 -->
+                <div class="food-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <img src="NasiLemak.jpeg" alt="Nasi Lemak" class="w-full h-40 sm:h-48 object-cover">
+                    <div class="p-3 sm:p-4">
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">Nasi Lemak</h3>
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base" data-i18n="products.nasiLemak.desc">Malaysia's national dish with fragrant coconut rice, sambal, anchovies, and peanuts.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary text-sm sm:text-base">RM 12.90</span>
+                            <button onclick="addToCart('Nasi Lemak', 12.90)" class="bg-primary hover:bg-secondary text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full transition text-xs sm:text-sm" data-i18n="products.addToCart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="food-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <img src="CharKwayTeow.jpeg" alt="Char Kway Teow" class="w-full h-40 sm:h-48 object-cover">
+                    <div class="p-3 sm:p-4">
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">Char Kway Teow</h3>
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base" data-i18n="products.charKwayTeow.desc">Stir-fried rice noodles with prawns, eggs, bean sprouts and chives in dark soy sauce.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary text-sm sm:text-base">RM 14.90</span>
+                            <button onclick="addToCart('Char Kway Teow', 14.90)" class="bg-primary hover:bg-secondary text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full transition text-xs sm:text-sm" data-i18n="products.addToCart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="food-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <img src="Satay.jpeg" alt="Satay" class="w-full h-40 sm:h-48 object-cover">
+                    <div class="p-3 sm:p-4">
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">Satay</h3>
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base" data-i18n="products.satay.desc">Grilled meat skewers with peanut sauce, served with ketupat (rice cakes) and fresh onions.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary text-sm sm:text-base">RM 18.90</span>
+                            <button onclick="addToCart('Satay', 18.90)" class="bg-primary hover:bg-secondary text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full transition text-xs sm:text-sm" data-i18n="products.addToCart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="food-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <img src="BungaKantan.jpg" alt="Bunga Kantan" class="w-full h-40 sm:h-48 object-cover">
+                    <div class="p-3 sm:p-4">
+                        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2">Bunga Kantan</h3>
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base" data-i18n="products.BungaKantan.desc">Spiced BBQ Chicken with Herb Rice Salad</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary text-sm sm:text-base">RM 17.20</span>
+                            <button onclick="addToCart('Bunga Kanta', 17.20)" class="bg-primary hover:bg-secondary text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full transition text-xs sm:text-sm" data-i18n="products.addToCart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8 sm:mt-10">
+                <a href="Shop.html" class="bg-primary hover:bg-secondary text-white font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full transition transform hover:scale-105 text-sm sm:text-base inline-block" data-i18n="products.viewAll">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Store -->
+    <section class="py-12 md:py-16 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6" data-i18n="visit.title">Visit Our Store</h2>
+            <p class="text-lg sm:text-xl mb-6 sm:mb-8 max-w-2xl md:max-w-3xl mx-auto" data-i18n="visit.subtitle">Experience our food in person at our cozy restaurant where you can enjoy the authentic Malaysian dining atmosphere.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                <a href="Contact Us.html" class="bg-white hover:bg-gray-100 text-primary font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full transition transform hover:scale-105 text-sm sm:text-base" data-i18n="visit.directions">Get Directions</a>
+                <a href="Contact Us.html" class="bg-secondary hover:bg-accent text-white font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full transition transform hover:scale-105 text-sm sm:text-base" data-i18n="visit.call">Call Us Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white pt-10 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
+                <!-- Important Links -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.linksTitle">Important Links</h3>
+                    <ul class="space-y-1 sm:space-y-2">
+                        <li><a href="Privacy Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="Shipping Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.shipping">Shipping Policy</a></li>
+                        <li><a href="Return Policy.html" class="hover:text-light transition text-sm sm:text-base" data-i18n="footer.returns">Return Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Shipping Information -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.shippingTitle">Shipping Information</h3>
+                    <p class="text-sm sm:text-base" data-i18n="footer.shippingDesc">Enjoy fast and dependable delivery, ensuring your orders arrive safely and on time. We take pride in providing a seamless shipping experience for every customer.</p>
+                </div>
+                
+                <!-- Company Information -->
+                <div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 border-b border-light pb-2" data-i18n="footer.companyTitle">Company Information</h3>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.companyName">Company Name:</strong> NBB NaVeen Enterprise</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.businessType">Business Type:</strong> Makanan (Food)</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.address">Business Address:</strong> 8 Pekan Sungai Lalang, 08100 Bedong, Kedah</p>
+                    <p class="mb-1 sm:mb-2 text-sm sm:text-base"><strong data-i18n="footer.email">Email:</strong> nb020347@gmail.com</p>
+                </div>
+            </div>
+            
+            <!-- Social Media -->
+            <div class="flex justify-center space-x-4 sm:space-x-6 mb-6 sm:mb-8">
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white hover:text-light text-xl sm:text-2xl transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center pt-4 sm:pt-6 border-t border-light">
+                <p class="text-sm sm:text-base" data-i18n="footer.copyright">&copy; 2024 MYR Enterprise Information. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About Us",
+                "nav.shop": "Shop",
+                "nav.contact": "Contact Us",
+                "nav.login": "Log In",
+                "nav.cart": "Cart",
+                "search.placeholder": "Search...",
+                "hero.title": "Authentic Malaysian Cuisine",
+                "hero.subtitle": "Experience the rich flavors and vibrant spices of Malaysia's diverse culinary heritage, delivered straight to your doorstep.",
+                "hero.shopButton": "Shop Now",
+                "hero.learnButton": "Learn More",
+                "about.title": "Our Story & Ingredients",
+                "about.para1": "At For Your Taste, we bring you the authentic taste of Malaysia using traditional recipes passed down through generations. Our dishes are prepared with the freshest ingredients and authentic Malaysian spices to ensure an unforgettable culinary experience.",
+                "about.para2": "We source our ingredients directly from Malaysia, including premium coconut milk, fresh lemongrass, galangal, and the finest quality spices. Each dish is carefully crafted to maintain the perfect balance of flavors that Malaysian cuisine is famous for.",
+                "about.feature1": "100% Authentic",
+                "about.feature2": "Premium Ingredients",
+                "about.feature3": "Halal Certified",
+                "about.feature4": "No Preservatives",
+                "why.title": "Why Choose Malaysian Delights",
+                "why.reason1.title": "Authentic Taste",
+                "why.reason1.desc": "Our recipes come straight from Malaysian kitchens, ensuring you get the real taste of Malaysia no matter where you are.",
+                "why.reason2.title": "Premium Quality",
+                "why.reason2.desc": "We use only the finest ingredients, many imported directly from Malaysia, to guarantee the highest quality in every bite.",
+                "why.reason3.title": "Fast Delivery",
+                "why.reason3.desc": "Enjoy fast and reliable delivery with our temperature-controlled packaging that keeps your food fresh until it arrives.",
+                "products.title": "Best Sellers This Week",
+                "products.nasiLemak.desc": "Malaysia's national dish with fragrant coconut rice, sambal, anchovies, and peanuts.",
+                "products.charKwayTeow.desc": "Stir-fried rice noodles with prawns, eggs, bean sprouts and chives in dark soy sauce.",
+                "products.satay.desc": "Grilled meat skewers with peanut sauce, served with ketupat (rice cakes) and fresh onions.",
+                "products.BungaKantan.desc": "Spiced BBQ Chicken with Herb Rice Salad",
+                "products.addToCart": "Add to Cart",
+                "products.viewAll": "View All Products",
+                "visit.title": "Visit Our Store",
+                "visit.subtitle": "Experience our food in person at our cozy restaurant where you can enjoy the authentic Malaysian dining atmosphere.",
+                "visit.directions": "Get Directions",
+                "visit.call": "Call Us Now",
+                "footer.linksTitle": "Important Links",
+                "footer.privacy": "Privacy Policy",
+                "footer.shipping": "Shipping Policy",
+                "footer.returns": "Return Policy",
+                "footer.shippingTitle": "Shipping Information",
+                "footer.shippingDesc": "Enjoy fast and dependable delivery, ensuring your orders arrive safely and on time. We take pride in providing a seamless shipping experience for every customer.",
+                "footer.companyTitle": "Company Information",
+                "footer.companyName": "Company Name:",
+                "footer.businessType": "Business Type:",
+                "footer.address": "Business Address:",
+                "footer.email": "Email:",
+                "footer.copyright": "© 2024 MYR Enterprise Information. All Rights Reserved."
+            },
+            my: {
+                "nav.home": "Laman Utama",
+                "nav.about": "Tentang Kami",
+                "nav.shop": "Kedai",
+                "nav.contact": "Hubungi Kami",
+                "nav.login": "Log Masuk",
+                "nav.cart": "Troli",
+                "search.placeholder": "Cari...",
+                "hero.title": "Masakan Malaysia Asli",
+                "hero.subtitle": "Nikmati pelbagai rasa dan rempah yang kaya dari warisan kuliner Malaysia yang pelbagai, dihantar terus ke depan pintu anda.",
+                "hero.shopButton": "Beli Sekarang",
+                "hero.learnButton": "Ketahui Lebih Lanjut",
+                "about.title": "Kisah & Bahan Kami",
+                "about.para1": "Di For Your Taste, kami membawa anda rasa asli Malaysia menggunakan resipi tradisional yang diwarisi turun-temurun. Hidangan kami disediakan dengan bahan-bahan yang paling segar dan rempah Malaysia asli untuk memastikan pengalaman kulinari yang tidak dapat dilupakan.",
+                "about.para2": "Kami mendapatkan bahan-bahan kami terus dari Malaysia, termasuk santan premium, serai segar, lengkuas, dan rempah berkualiti tinggi. Setiap hidangan disediakan dengan teliti untuk mengekalkan keseimbangan rasa yang sempurna yang terkenal dalam masakan Malaysia.",
+                "about.feature1": "100% Asli",
+                "about.feature2": "Bahan Premium",
+                "about.feature3": "Bersijil Halal",
+                "about.feature4": "Tiada Pengawet",
+                "why.title": "Mengapa Pilih Malaysian Delights",
+                "why.reason1.title": "Rasa Asli",
+                "why.reason1.desc": "Resipi kami datang terus dari dapur Malaysia, memastikan anda mendapat rasa sebenar Malaysia di mana sahaja anda berada.",
+                "why.reason2.title": "Kualiti Premium",
+                "why.reason2.desc": "Kami hanya menggunakan bahan-bahan terbaik, banyak yang diimport terus dari Malaysia, untuk menjamin kualiti tertinggi dalam setiap suapan.",
+                "why.reason3.title": "Penghantaran Pantas",
+                "why.reason3.desc": "Nikmati penghantaran pantas dan boleh dipercayai dengan pembungkusan terkawal suhu kami yang mengekalkan kesegaran makanan anda sehingga tiba.",
+                "products.title": "Jualan Terbaik Minggu Ini",
+                "products.nasiLemak.desc": "Hidangan kebangsaan Malaysia dengan nasi lemak berperisa, sambal, ikan bilis dan kacang.",
+                "products.charKwayTeow.desc": "Mi goreng dengan udang, telur, tauge dan kucai dalam kicap pekat.",
+                "products.satay.desc": "Lidi daging panggang dengan kuah kacang, dihidangkan dengan ketupat dan bawang mentah.",
+                "products.BungaKantan.desc": "Ayam BBQ Berempah dengan Salad Nasi Herba.",
+                "products.addToCart": "Tambah ke Troli",
+                "products.viewAll": "Lihat Semua Produk",
+                "visit.title": "Lawati Kedai Kami",
+                "visit.subtitle": "Nikmati makanan kami secara langsung di restoran kami yang selesa di mana anda boleh merasai suasana makan ala Malaysia yang asli.",
+                "visit.directions": "Dapatkan Arah",
+                "visit.call": "Hubungi Kami Sekarang",
+                "footer.linksTitle": "Pautan Penting",
+                "footer.privacy": "Dasar Privasi",
+                "footer.shipping": "Dasar Penghantaran",
+                "footer.returns": "Dasar Pulangan",
+                "footer.shippingTitle": "Maklumat Penghantaran",
+                "footer.shippingDesc": "Nikmati penghantaran pantas dan boleh dipercayai, memastikan pesanan anda tiba dengan selamat dan tepat pada masanya. Kami berbangga menyediakan pengalaman penghantaran yang lancar untuk setiap pelanggan.",
+                "footer.companyTitle": "Maklumat Syarikat",
+                "footer.companyName": "Nama Syarikat:",
+                "footer.businessType": "Jenis Perniagaan:",
+                "footer.address": "Alamat Perniagaan:",
+                "footer.email": "Emel:",
+                "footer.copyright": "© 2024 Maklumat Perusahaan MYR. Hak Cipta Terpelihara."
+            }
+        };
+
+        // Set default language
+        let currentLanguage = localStorage.getItem('language') || 'en';
+        
+        // Update language toggle based on stored preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageToggle = document.getElementById('languageToggle');
+            const languageToggleMobile = document.getElementById('languageToggleMobile');
+            
+            if (currentLanguage === 'my') {
+                if (languageToggle) languageToggle.checked = true;
+                if (languageToggleMobile) languageToggleMobile.checked = true;
+            }
+            
+            updateLanguage();
+            
+            // Add event listeners for language toggles
+            if (languageToggle) {
+                languageToggle.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'my' : 'en';
+                    localStorage.setItem('language', currentLanguage);
+                    updateLanguage();
+                });
+            }
+            
+            if (languageToggleMobile) {
+                languageToggleMobile.addEventListener('change', function() {
+                    currentLanguage = this.checked ? 'my' : 'en';
+                    localStorage.setItem('language', currentLanguage);
+                    updateLanguage();
+                });
+            }
+        });
+
+        // Update all text elements with translations
+        function updateLanguage() {
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+            
+            // Update all placeholder texts
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[currentLanguage][key]) {
+                    element.setAttribute('placeholder', translations[currentLanguage][key]);
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+        
+        // Close menu when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        // Cart functionality
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        updateCartCount();
+
+        function addToCart(name, price) {
+            // Check if item already exists in cart
+            const existingItem = cartItems.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show notification in current language
+            const message = currentLanguage === 'en' 
+                ? `${name} has been added to your cart!` 
+                : `${name} telah ditambah ke troli anda!`;
+            alert(message);
+        }
+
+        function updateCartCount() {
+            const count = cartItems.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+    </script>
+</body>
+</html>
